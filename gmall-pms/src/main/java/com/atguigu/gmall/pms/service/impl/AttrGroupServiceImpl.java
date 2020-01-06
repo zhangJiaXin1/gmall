@@ -36,6 +36,8 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     private AttrAttrgroupRelationDao relationDao;
     @Autowired
     private AttrDao attrDao;
+    @Autowired
+    private AttrGroupDao attrGroupDao;
     @Override
     public PageVo queryPage(QueryCondition params) {
         IPage<AttrGroupEntity> page = this.page(
@@ -72,6 +74,16 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         List<AttrEntity> attrEntities = attrDao.selectBatchIds(AttrIdList);
         groupVo.setAttrEntities(attrEntities);
         return groupVo;
+    }
+
+    @Override
+    public List<GroupVo> queryAttrAndGroupByCid(Long catId) {
+        //通过CatId查询所有的组
+        List<AttrGroupEntity> groupEntities = this.list(new QueryWrapper<AttrGroupEntity>().eq("catelog_id", catId));
+         return groupEntities.stream().map(attrGroupEntity -> {
+            return this.queryAttrByGid(attrGroupEntity.getAttrGroupId());
+        }).collect(Collectors.toList());
+
     }
 
 

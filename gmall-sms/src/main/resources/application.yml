@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: 10000
 spring:
   cloud:
     nacos:
@@ -13,9 +13,9 @@ spring:
   redis:
     host: 192.168.64.130
 mybatis-plus:
-  mapper-locations: classpath:mapper/sms/*.xml  # ¶ÁÈ¡Ó³ÉäÎÄ¼þ
+  mapper-locations: classpath:mapper/sms/*.xml  # ï¿½ï¿½È¡Ó³ï¿½ï¿½ï¿½Ä¼ï¿½
   global-config:
     db-config:
-      id-type: auto  # Ä¬ÈÏÊ¹ÓÃÊý¾Ý¿â×ÔÔö
+      id-type: auto  # Ä¬ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 
 

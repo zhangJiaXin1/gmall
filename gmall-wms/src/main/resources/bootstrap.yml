@@ -9,4 +9,4 @@ spring:
         file-extension: yml
         group: dev
       discovery:
-        namespace: 1a1c0c7f-978f-4194-b83b-b8d8ec72c767
+#        namespace: 1a1c0c7f-978f-4194-b83b-b8d8ec72c767
