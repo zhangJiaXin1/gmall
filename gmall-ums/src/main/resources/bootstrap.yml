@@ -7,5 +7,5 @@ spring:
       config:
         server-addr: localhost:8848
         file-extension: yml
-      discovery:
-        namespace: 00f8a937-42e2-4d55-91f3-a95b1117d802
+#      discovery:
+#        namespace: 00f8a937-42e2-4d55-91f3-a95b1117d802

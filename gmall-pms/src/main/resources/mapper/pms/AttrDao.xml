@@ -17,5 +17,4 @@
         <result property="showDesc" column="show_desc"/>
     </resultMap>
 
-
 </mapper>

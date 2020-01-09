@@ -1,33 +1,23 @@
 package com.atguigu.gmall.pms.service.impl;
 
-import com.atguigu.gmall.pms.dao.SkuInfoDao;
-import com.atguigu.gmall.pms.dao.SpuInfoDescDao;
-import com.atguigu.gmall.pms.entity.*;
-import com.atguigu.gmall.pms.feign.GmallSmsServiceFeign;
-import com.atguigu.gmall.pms.service.*;
-import com.atguigu.gmall.pms.vo.BaseAttrValueVo;
-import com.atguigu.gmall.pms.vo.SkuInfoVo;
-import com.atguigu.gmall.pms.vo.SpuInfoVo;
-//import com.atguigu.gmall.sms.vo.SaleVo;
-import com.atguigu.gmall.sms.vo.SaleVo;
-import io.seata.spring.annotation.GlobalTransactional;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.Query;
 import com.atguigu.core.bean.QueryCondition;
-
 import com.atguigu.gmall.pms.dao.SpuInfoDao;
-import org.springframework.util.CollectionUtils;
+import com.atguigu.gmall.pms.entity.SpuInfoEntity;
+import com.atguigu.gmall.pms.service.*;
+import com.atguigu.gmall.pms.vo.SpuInfoVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.spring.annotation.GlobalTransactional;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+
+//import com.atguigu.gmall.sms.vo.SaleVo;
 
 
 @Service("spuInfoService")

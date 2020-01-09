@@ -1,0 +1,10 @@
+server:
+  port: 8086
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  elasticsearch:
+    rest:
+      uris: http://192.168.64.130:9200

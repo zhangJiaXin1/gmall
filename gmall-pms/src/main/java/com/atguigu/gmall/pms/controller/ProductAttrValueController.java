@@ -1,22 +1,18 @@
 package com.atguigu.gmall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.entity.ProductAttrValueEntity;
+import com.atguigu.gmall.pms.service.ProductAttrValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.pms.entity.ProductAttrValueEntity;
-import com.atguigu.gmall.pms.service.ProductAttrValueService;
-
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -33,6 +29,12 @@ public class ProductAttrValueController {
     @Autowired
     private ProductAttrValueService productAttrValueService;
 
+    //根据spuid查出所有的可以查找的spu属性（搜索属性）
+    @GetMapping("{spuId}")
+    public Resp<List<ProductAttrValueEntity>> querySearchAttrBySpuId(@PathVariable("spuId")Long spuId){
+        List<ProductAttrValueEntity> list=productAttrValueService.querySearchAttrBySpuId(spuId);
+        return Resp.ok(list);
+    }
     /**
      * 列表
      */

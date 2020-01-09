@@ -1,21 +1,22 @@
 package com.atguigu.gmall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
+import com.atguigu.core.bean.Query;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.entity.SpuInfoEntity;
+import com.atguigu.gmall.pms.service.SpuInfoService;
 import com.atguigu.gmall.pms.vo.SpuInfoVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.pms.entity.SpuInfoEntity;
-import com.atguigu.gmall.pms.service.SpuInfoService;
+import java.util.Arrays;
+import java.util.List;
 
 
 
@@ -41,6 +42,13 @@ public class SpuInfoController {
     /**
      * 列表
      */
+
+    //查询所有的spu信息，并且保存到elasticsearch中
+    @PostMapping("/page")
+    public Resp<List<SpuInfoEntity>> querySpuByPage(@RequestBody QueryCondition queryCondition){
+        IPage<SpuInfoEntity> page = spuInfoService.page(new Query<SpuInfoEntity>().getPage(queryCondition), new QueryWrapper<SpuInfoEntity>().eq("publish_status", 1));
+        return Resp.ok(page.getRecords());
+    }
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
     @PreAuthorize("hasAuthority('pms:spuinfo:list')")

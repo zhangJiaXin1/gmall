@@ -1,23 +1,20 @@
 package com.atguigu.gmall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.entity.AttrEntity;
+import com.atguigu.gmall.pms.service.AttrService;
 import com.atguigu.gmall.pms.vo.AttrVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.validator.constraints.EAN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.pms.entity.AttrEntity;
-import com.atguigu.gmall.pms.service.AttrService;
-
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -33,6 +30,7 @@ import com.atguigu.gmall.pms.service.AttrService;
 public class AttrController {
     @Autowired
     private AttrService attrService;
+
     @GetMapping
     //type的值设置为required默认查出全部的
     public Resp<PageVo> queryAttrByCid(QueryCondition queryCondition,@RequestParam("cid")Long cid,@RequestParam(value="type",required = false) Integer type){
