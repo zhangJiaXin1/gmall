@@ -6,8 +6,6 @@ import com.atguigu.gmall.pms.entity.AttrEntity;
 import com.atguigu.gmall.pms.vo.AttrVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.util.List;
-
 
 /**
  * 商品属性
@@ -19,7 +17,6 @@ import java.util.List;
 public interface AttrService extends IService<AttrEntity> {
 
     PageVo queryPage(QueryCondition params);
-
 
     PageVo queryAttrByCid(QueryCondition queryCondition, Long cid, Integer type);
 

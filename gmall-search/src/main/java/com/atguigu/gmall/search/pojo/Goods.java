@@ -40,4 +40,6 @@ public class Goods {
     private String categoryName;
     @Field(type = FieldType.Nested)
     private List<SearchAttrValue> attrs;
+
+
 }

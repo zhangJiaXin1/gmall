@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     private SpuInfoDao spuInfoDao;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
     @Autowired
     private SpuInfoDescService spuInfoDescService;
     @Autowired
@@ -79,8 +82,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         //保存sku的相关属性
         skuInfoService.saveSku(spuInfoVo, spuId);
 
-
+        //使用rabbit将数据同步到elasticsearch,此处是将消息传给交换机
+        sendMsgExchange(spuId, "insert");
     }
+
+    private void sendMsgExchange(Long spuId,String type) {
+        this.amqpTemplate.convertAndSend("GMALL-PMS-EXCHANGE","item."+type,spuId);
+    }
+
     public Long saveSpuInfo(SpuInfoVo spuInfoVo) {
         Long cid = spuInfoVo.getCatalogId();
         spuInfoVo.setCreateTime(new Date());

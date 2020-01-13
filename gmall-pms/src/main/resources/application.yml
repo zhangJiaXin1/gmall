@@ -1,0 +1,6 @@
+spring:
+  rabbitmq:
+    username: jiaxin
+    host: 192.168.64.130
+    password: jiaxin
+    virtual-host: /jiaxin
